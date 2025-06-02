@@ -20,7 +20,7 @@ void main() {
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,11 @@ class _AppLocalizationsDelegate
   @override
   Future<AppLocalizations> load(Locale locale) {
     return MultipleLocalizations.load(
-        initializeMessages, locale, AppLocalizations.new,
-        setDefaultLocale: true);
+      initializeMessages,
+      locale,
+      AppLocalizations.new,
+      setDefaultLocale: true,
+    );
   }
 
   @override
@@ -84,9 +87,10 @@ class AppLocalizations {
   String get messageFromApp =>
       Intl.message('Default Message from App', name: 'messageFromApp');
 
-  String get messageFromPackageForOverride =>
-      Intl.message('This translation override package translation',
-          name: 'messageFromPackageForOverride');
+  String get messageFromPackageForOverride => Intl.message(
+        'This translation override package translation',
+        name: 'messageFromPackageForOverride',
+      );
 }
 
 // Other localization, for example from package
@@ -101,7 +105,10 @@ class _PackageLocalizationsDelegate
   @override
   Future<PackageLocalizations> load(Locale locale) {
     return MultipleLocalizations.load(
-        package.initializeMessages, locale, PackageLocalizations.new);
+      package.initializeMessages,
+      locale,
+      PackageLocalizations.new,
+    );
   }
 
   @override
@@ -124,7 +131,8 @@ class PackageLocalizations {
   String get messageFromPackage =>
       Intl.message('Default Message from Package', name: 'messageFromPackage');
 
-  String get messageFromPackageForOverride =>
-      Intl.message('Default Message from Package for override',
-          name: 'messageFromPackageForOverride');
+  String get messageFromPackageForOverride => Intl.message(
+        'Default Message from Package for override',
+        name: 'messageFromPackageForOverride',
+      );
 }
